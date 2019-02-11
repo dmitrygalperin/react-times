@@ -225,7 +225,7 @@ class TimePicker extends React.PureComponent {
       times = times.replace(/(M|m)/g, Number(minute));
     } else {
       times = (validTimeMode === 12)
-        ? `${hour} : ${minute} ${this.meridiem}`
+        ? `${hour === '00' ? '12' : hour} : ${minute} ${this.meridiem}`
         : `${hour} : ${minute}`;
     }
     return times;

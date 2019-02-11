@@ -169,7 +169,7 @@ class TwelveHoursMode extends React.PureComponent {
       <React.Fragment>
         <div className="time_picker_modal_header">
           <span className="time_picker_header active">
-            {hour}:{minute}
+            {hour === '00' ? '12' : hour}:{minute}
           </span>&nbsp;
           <span
             onClick={this.handleMeridiemChange}
@@ -197,6 +197,7 @@ class TwelveHoursMode extends React.PureComponent {
             minLength={MAX_ABSOLUTE_POSITION}
             draggable={draggable}
             handleTimePointerClick={this.handleMinutePointerClick}
+            isMinutes={true}
           />
           <PickerDragHandler
             step={0}

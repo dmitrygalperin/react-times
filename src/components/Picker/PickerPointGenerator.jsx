@@ -35,7 +35,8 @@ const pickerPointGenerator = (type = 'hour', mode = 24) =>
     }
 
     renderHourPointes() {
-      const hours = parseInt(mode, 10) === 24 ? HOURS : TWELVE_HOURS;
+      const is12HourMode = parseInt(mode, 10) === 12;
+      const hours = is12HourMode ? TWELVE_HOURS : HOURS;
       return hours.map((_, index) => {
         const pointClass = index < 12
           ? 'picker_point point_inner'
@@ -48,6 +49,7 @@ const pickerPointGenerator = (type = 'hour', mode = 24) =>
             key={index}
             angle={angle}
             index={index}
+            label={is12HourMode && index === 0 ? 12 : index}
             pointClass={pointClass}
             pointerRotate={this.props.pointerRotate}
             onClick={this.props.handleTimePointerClick}

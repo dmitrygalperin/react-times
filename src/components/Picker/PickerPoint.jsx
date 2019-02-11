@@ -4,6 +4,7 @@ import darg from '../../utils/drag';
 
 const propTypes = {
   index: PropTypes.number,
+  label: PropTypes.number,
   angle: PropTypes.number,
   onClick: PropTypes.func,
   pointClass: PropTypes.string,
@@ -11,6 +12,7 @@ const propTypes = {
 
 const defaultProps = {
   index: 0,
+  label: null,
   angle: 0,
   onClick: Function.prototype,
   pointClass: 'picker_point point_outter',
@@ -19,6 +21,7 @@ const defaultProps = {
 const PickerPoint = (props) => {
   const {
     index,
+    label,
     angle,
     onClick,
     pointClass,
@@ -46,7 +49,7 @@ const PickerPoint = (props) => {
       onMouseDown={darg.disableMouseDown}
     >
       <div className="point_wrapper" style={wrapperStyle}>
-        {index}
+        {label === null ? index : label}
       </div>
     </div>
   );

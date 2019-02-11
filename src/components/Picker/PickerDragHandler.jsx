@@ -22,7 +22,8 @@ const propTypes = {
     height: PropTypes.number,
     pointerRotate: PropTypes.number
   }),
-  handleTimePointerClick: PropTypes.func
+  handleTimePointerClick: PropTypes.func,
+  isMinutes: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -38,7 +39,8 @@ const defaultProps = {
   maxLength: MAX_ABSOLUTE_POSITION,
   minuteStep: 5,
   limitDrag: false,
-  handleTimePointerClick: Function.prototype
+  handleTimePointerClick: Function.prototype,
+  isMinutes: false,
 };
 
 class PickerDragHandler extends React.PureComponent {
@@ -356,11 +358,13 @@ class PickerDragHandler extends React.PureComponent {
   }
 
   render() {
-    const { time, draggable } = this.props;
+    const { time, draggable, timeMode, isMinutes } = this.props;
     const { draging, height, top, pointerRotate } = this.state;
     const pickerPointerClass = draging
       ? 'picker_pointer'
       : 'picker_pointer animation';
+
+    const is12HourMode = Number(timeMode) === 12;
 
     return (
       <div className="picker_handler">
@@ -375,7 +379,7 @@ class PickerDragHandler extends React.PureComponent {
             onMouseDown={draggable ? this.handleMouseDown : Function.prototype}
             onTouchStart={draggable ? this.handleMouseDown : Function.prototype}
           >
-            {time}
+            { is12HourMode && !isMinutes && time === 0 ? 12 : time }
           </div>
         </div>
         <div
